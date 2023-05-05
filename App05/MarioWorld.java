@@ -5,6 +5,7 @@ import java.util.Random;
  */
 public class MarioWorld extends World
 {
+    GreenfootSound myMusic = new GreenfootSound("background.mp3");
     public static final int MAXN_STARS = 20;
     
     private Mario mario;
@@ -102,5 +103,9 @@ public class MarioWorld extends World
    public void winGame()
     {
         showText("Game Over: You have Won!", 400, 300);
-    }    
+    }   
+    public void act()
+    {
+        myMusic.play();
+    }
 }
