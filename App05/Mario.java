@@ -106,4 +106,15 @@ public class Mario extends Characters
         
         setLocation(x, y);        
     }
+    public void loseGame()
+    {
+        Actor Mario = getOneIntersectingObject(Mario.class);
+        if(Mario !=null)
+        {
+            World myWorld = getWorld();
+            Gameover gameover = new Gameover();
+            myWorld.addObject(gameover, myWorld.getWidth()/2, myWorld.getHeight()/2);
+            myWorld.removeObject(this);
+        }
+    }
 }
