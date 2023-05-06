@@ -55,7 +55,7 @@ public class Mario extends Characters
             
             energy++;
             score+=2;
-            updateCounters ();
+            updateCounters();
         
             
         }
