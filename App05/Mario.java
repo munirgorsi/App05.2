@@ -47,7 +47,7 @@ public class Mario extends Characters
         if(eat(Stars.class)==true)
         {
             energy = MAX_ENERGY;
-            score++;
+            score+=2;
             
             getWorld().addObject(new Stars(), Greenfoot.getRandomNumber(getWorld().getWidth()), Greenfoot.getRandomNumber(getWorld().getHeight()));
             updateCounters();
@@ -56,9 +56,17 @@ public class Mario extends Characters
         else if(eat(Silver.class)==true)
         {
             energy = MAX_ENERGY;
-            score+=2;
+            score+=1;
             
-            getWorld().addObject(new Stars(), Greenfoot.getRandomNumber(getWorld().getWidth()), Greenfoot.getRandomNumber(getWorld().getHeight()));
+            getWorld().addObject(new Silver(), Greenfoot.getRandomNumber(getWorld().getWidth()), Greenfoot.getRandomNumber(getWorld().getHeight()));
+            updateCounters();
+        }
+        else if(eat(Bronze.class)==true)
+        {
+            energy = MAX_ENERGY;
+            score+=3;
+            
+            getWorld().addObject(new Bronze(), Greenfoot.getRandomNumber(getWorld().getWidth()), Greenfoot.getRandomNumber(getWorld().getHeight()));
             updateCounters();
         }
     }
@@ -108,19 +116,19 @@ public class Mario extends Characters
 
         if(Greenfoot.isKeyDown("left") && x > halfWidth)
         {
-            setRotation(270);
+            setRotation(250);
             x -= speed;
         }
 
         if(Greenfoot.isKeyDown("right") && !isAtEdge())
         {
-            setRotation(90);
+            setRotation(80);
             x += speed;
         }        
 
         if(Greenfoot.isKeyDown("down") && !isAtEdge())
         {
-            setRotation(180);
+            setRotation(170);
             y += speed;
         } 
 

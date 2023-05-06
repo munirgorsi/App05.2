@@ -7,15 +7,18 @@ public class MarioWorld extends World
 {
     GreenfootSound myMusic = new GreenfootSound("background.mp3");
     public static final int MAXN_STARS = 20;
+    public static final int MAXN_Silver = 20;
+    public static final int MAXN_Bronze = 20;
     
     private Mario mario;
     private Rocket rocket;
     private Stars[] Stars;
     private Silver[] Silver;
-    private int SilverSize = 30;
+    private Bronze[] Bronze;
+    private int SilverSize = 20;
     private int starsSize = 30;
+    private int BronzeSize = 20;
     private int remainingStars = MAXN_STARS;
-    
     private Random generator = new Random();
     private Counter score;
     private Counter energy;
@@ -28,23 +31,24 @@ public class MarioWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
-        
         mario = new Mario();
         addObject(mario, 200, 200);
-        
         rocket = new Rocket();
         addRocket();
         addRocket();
         addRocket();
-        
-        
-      
-        
         Stars = new Stars[10];
         addStars();
         addStars();
-        
-       Silver = new Silver [10];
+        addStars();
+        Silver = new Silver[10];
+        addSilver();
+        addSilver();
+        addSilver();
+        Bronze = new Bronze[10];
+        addBronze();
+        addBronze();
+        addBronze();
         setupCounters();
     }
     
@@ -55,9 +59,19 @@ public class MarioWorld extends World
     {
         createStars();
     }
+    /**
+     * Add MAXN_Silver to the world in random positions
+     */
     public void addSilver()
     {
         createSilver();
+    }
+    /**
+     * Add MAXN_Bronze to the world in random positions
+     */
+    public void addBronze()
+    {
+        createBronze();
     }
     public void addRocket()
     {
@@ -91,6 +105,16 @@ public class MarioWorld extends World
         int y = generator.nextInt(getHeight());
         
          addObject(silver, x, y);
+        
+    }
+      private void createBronze()
+    {
+        Bronze bronze = new Bronze();
+        
+        int x = generator.nextInt(getWidth());
+        int y = generator.nextInt(getHeight());
+        
+         addObject(bronze, x, y);
         
     }
 
