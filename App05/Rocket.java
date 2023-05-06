@@ -11,14 +11,14 @@ import java.io.File;
  */
 public class Rocket extends Characters
 {
-    private int speed = 2;
+    private int speed = 1;
     private Random generator = new Random();
     
    
     public void act()
     {
-        // Add your action code here.
-        move(speed);
+    int num = generator.nextInt(5);
+    if(num>3)move(speed);
         if(atWorldEdge())
     { 
         turn(120);

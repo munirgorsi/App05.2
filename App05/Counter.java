@@ -41,7 +41,7 @@ public class Counter extends Actor
     public void bumpCount(int amount)
     {
         totalcount += amount;
-        setImage(new GreenfootImage("" + totalcount, 22, Color.BLACK, transparent));
+        setImage(new GreenfootImage("" + totalcount, 50, Color.BLACK, transparent));
     }
     
 
@@ -115,7 +115,7 @@ public class Counter extends Actor
     private void updateImage()
     {
         GreenfootImage image = new GreenfootImage(background);
-        GreenfootImage text = new GreenfootImage(prefix + value, 22, Color.BLACK, transparent);
+        GreenfootImage text = new GreenfootImage(prefix + value, 30, Color.BLACK, transparent);
         
         if (text.getWidth() > image.getWidth() - 20)
         {

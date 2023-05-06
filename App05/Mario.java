@@ -10,9 +10,10 @@ public class Mario extends Characters
 {
     protected int width=10;
     protected int height=10;
-    
+    protected int energy =100;
     protected int speed = 2;
     protected int turnAngle = 4;
+    protected int score = 0;
     
     protected GreenfootImage image;
     
@@ -25,8 +26,13 @@ public class Mario extends Characters
         width = image.getWidth();
         height = image.getHeight();
         image.scale((int)(width * 0.06), (int)(height * 0.06));
+
     }
-     
+     public int getEnergy()
+     {
+        return energy;
+        
+        }
      
     /**
      * This method allows the user to move the crab so that when
@@ -38,15 +44,30 @@ public class Mario extends Characters
         turnAndMove(); 
         if(eat(Stars.class)==true)
         {
-            Greenfoot.playSound("slurp.wav");
-            getWorld().addObject(new Stars(), Greenfoot.getRandomNumber(getWorld().getWidth()), Greenfoot.getRandomNumber(getWorld().getHeight()));
-            Counter counter = (Counter)getWorld().getObjects(Counter.class).get(0);
-            counter.add(1);
+           
+            energy++;
+            score++;
+         updateCounters();
+            
+        }
+         else if(eat(Silver.class)==true)
+        {
+            
+            energy++;
+            score+=2;
+            updateCounters ();
+        
             
         }
         
     }
-    
+    public void updateCounters ()
+    {
+        Greenfoot.playSound("slurp.wav");
+        MarioWorld world = (MarioWorld) getWorld(); 
+        world.addObject(new Stars(), Greenfoot.getRandomNumber(getWorld().getWidth()), Greenfoot.getRandomNumber(getWorld().getHeight()));
+        world.updateCounters(score,energy);
+    }
     /**
      * This method rotates the worm a small amount to the
      * left or to the right, and then the worm moves in that
@@ -66,7 +87,9 @@ public class Mario extends Characters
         
         if(Greenfoot.isKeyDown("space"))
         {
-             move(speed);    
+             move(speed);
+             energy--;
+             updateCounters();
         }         
     }
     
@@ -106,15 +129,5 @@ public class Mario extends Characters
         
         setLocation(x, y);        
     }
-    public void loseGame()
-    {
-        Actor Mario = getOneIntersectingObject(Mario.class);
-        if(Mario !=null)
-        {
-            World myWorld = getWorld();
-            Gameover gameover = new Gameover();
-            myWorld.addObject(gameover, myWorld.getWidth()/2, myWorld.getHeight()/2);
-            myWorld.removeObject(this);
-        }
-    }
+   
 }

@@ -52,6 +52,7 @@ public class Characters extends Actor
         Actor actor = getOneObjectAtOffset(0, 0, foodClass);
         if(actor != null) {
             getWorld().removeObject(actor);
+            
             return true;
         }
         return false;

@@ -11,11 +11,14 @@ public class MarioWorld extends World
     private Mario mario;
     private Rocket rocket;
     private Stars[] Stars;
+    private Silver[] Silver;
+    private int SilverSize = 30;
     private int starsSize = 30;
     private int remainingStars = MAXN_STARS;
     
     private Random generator = new Random();
     private Counter score;
+    private Counter energy;
     
     /**
      * Constructor for objects of class MyWorld.
@@ -33,23 +36,16 @@ public class MarioWorld extends World
         addRocket();
         addRocket();
         addRocket();
-        addRocket();
-        addRocket();
-        addRocket();
-        addRocket();
+        
         
       
         
         Stars = new Stars[10];
         addStars();
         addStars();
-        addStars();
-        addStars();
-        addStars();
-       
-      
         
-        setupScore();
+       Silver = new Silver [10];
+        setupCounters();
     }
     
     /**
@@ -59,7 +55,10 @@ public class MarioWorld extends World
     {
         createStars();
     }
-    
+    public void addSilver()
+    {
+        createSilver();
+    }
     public void addRocket()
     {
         createRocket();
@@ -84,17 +83,36 @@ public class MarioWorld extends World
          addObject(stars, x, y);
         
     }
+    private void createSilver()
+    {
+        Silver silver = new Silver();
+        
+        int x = generator.nextInt(getWidth());
+        int y = generator.nextInt(getHeight());
+        
+         addObject(silver, x, y);
+        
+    }
+
     
     public void score()
     {
     }
     
-    private void setupScore()
+    private void setupCounters()
     {
         score = new Counter("Score: ");
         addObject (score, 60, 30);
+        energy = new Counter("Energy: ");
+        energy.setValue(100);
+        addObject (energy, 220, 30);
+        
     }
-    
+    public void updateCounters(int scoreValue,int energyValue)
+    {
+        score.setValue(scoreValue);
+        energy.setValue(energyValue);
+    }
     public void loseGame()
     {
         showText("Game Over: You have Lost!", 400, 300);
