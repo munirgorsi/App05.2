@@ -127,5 +127,5 @@ target9.y=0
 version=3.0.0
 width=1009
 world.lastInstantiated=MarioWorld
-xPosition=313
-yPosition=1
+xPosition=225
+yPosition=8

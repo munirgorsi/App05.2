@@ -43,8 +43,6 @@ public class Counter extends Actor
         totalcount += amount;
         setImage(new GreenfootImage("" + totalcount, 50, Color.BLACK, transparent));
     }
-    
-
     /**
      * Create a new counter, initialised to 0.
      */
@@ -80,7 +78,6 @@ public class Counter extends Actor
     {
         target += score;
     }
-
     /**
      * Return the current counter value.
      */
@@ -88,7 +85,6 @@ public class Counter extends Actor
     {
         return target;
     }
-
     /**
      * Set a new counter value.  This will not animate the counter.
      */
@@ -98,7 +94,6 @@ public class Counter extends Actor
         value = newValue;
         updateImage();
     }
-    
     /**
      * Sets a text prefix that should be displayed before
      * the counter value (e.g. "Score: ").
@@ -108,7 +103,6 @@ public class Counter extends Actor
         this.prefix = prefix;
         updateImage();
     }
-
     /**
      * Update the image on screen to show the current value.
      */
@@ -116,14 +110,11 @@ public class Counter extends Actor
     {
         GreenfootImage image = new GreenfootImage(background);
         GreenfootImage text = new GreenfootImage(prefix + value, 30, Color.BLACK, transparent);
-        
         if (text.getWidth() > image.getWidth() - 20)
         {
             image.scale(text.getWidth() + 20, image.getHeight());
         }
-        
-        image.drawImage(text, (image.getWidth()-text.getWidth())/2, 
-                        (image.getHeight()-text.getHeight())/2);
+        image.drawImage(text, (image.getWidth()-text.getWidth())/2,                (image.getHeight()-text.getHeight())/2);
         setImage(image);
     }
 }
